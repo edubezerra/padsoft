@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="br.cefetrj.sca.dominio.Turma">
+
+		<id name="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="codigo" />
+
+		<component name="periodo" access="field" class="br.cefetrj.sca.dominio.PeriodoLetivo">
+			<property name="ano" type="int" />
+			
+			<property name="semestre" column="semestre">
+				<type name="org.hibernate.type.EnumType">
+					<param name="enumClass">br.cefetrj.sca.dominio.PeriodoAnoEnum</param>
+				</type>
+			</property>
+			
+		</component>
+
+		<property name="capacidadeMaxima" />
+
+		<many-to-one name="professor" class="br.cefetrj.sca.dominio.Professor"
+			column="professor_id" />
+
+		<many-to-one name="disciplina" class="br.cefetrj.sca.dominio.Disciplina"
+			column="disciplina_id" />
+
+	</class>
+</hibernate-mapping>

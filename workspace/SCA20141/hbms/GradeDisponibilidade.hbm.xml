@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="br.cefetrj.sca.dominio.GradeDisponibilidade">
+
+		<id name="id">
+			<generator class="increment" />
+		</id>
+
+		<set name="disciplinas" table="GradeDisponibilidadeDisciplina"
+			inverse="false">
+			<key column="gradedisponibilidade_id" />
+			<many-to-many class="br.cefetrj.sca.dominio.Disciplina"
+				column="disciplina_id" />
+		</set>
+
+	</class>
+
+</hibernate-mapping>

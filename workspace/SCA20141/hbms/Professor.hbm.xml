@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping 
+	PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="br.cefetrj.sca.dominio.Professor">
+		<id name="id">
+			<generator class="increment" />
+		</id>
+		<property name="matricula" />
+		<property name="nome" />
+
+		<set name="habilitacoes" table="ProfessorDisciplina" inverse="false">
+			<key column="professor_id" />
+			<many-to-many class="br.cefetrj.sca.dominio.Disciplina"
+				column="disciplina_id" />
+		</set>
+
+		<set name="gradesDisponibilidades" cascade="save-update">
+			<key column="professor_id" />
+			<one-to-many class="br.cefetrj.sca.dominio.GradeDisponibilidade" />
+		</set>
+
+	</class>
+</hibernate-mapping>
