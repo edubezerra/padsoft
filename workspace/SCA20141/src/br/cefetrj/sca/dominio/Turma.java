@@ -2,11 +2,8 @@ package br.cefetrj.sca.dominio;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import br.cefetrj.sca.dominio.SemestreLetivo.Periodo;
 
 public class Turma {
 	private static final int TAM_MAX_CODIGO = 7;
@@ -90,8 +87,11 @@ public class Turma {
 	}
 
 	public boolean inscreverAluno(Aluno aluno) {
+		if (aluno == null) {
+			throw new IllegalStateException("Aluno não fornecido!");
+		}
 		if (inscricoes.size() + 1 > capacidadeMaxima) {
-			throw new IllegalStateException("Limite de vagas já alcançado.");
+			throw new IllegalStateException("Limite de vagas já alcançado!");
 		}
 		if (inscricoes.size() < capacidadeMaxima) {
 			Participacao inscricao = new Participacao(aluno, this);
